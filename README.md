@@ -1,6 +1,7 @@
 # WARNING
 
-NEVER give someone you do not trust 100% your seed and never enter your seed in software you do not trust. Under the hood such software can send your seed to someone who wants to steal your funds.
+NEVER give your seed to anyone, not even to someone you think you can trust. Not even the devs. There's scammers out there. NEVER enter your seed into or download any software that is closed source and/or that hasn't been reviewed and approved by either the IOTA foundation or at least the IOTA community.
+
 
 ## What does this tool do
 
