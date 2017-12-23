@@ -1,6 +1,6 @@
 # WARNING
 
-NEVER give someone you do not trust 100% your seed and never enter your seed in software you do not trust. Under the hood such software can send your seed to someone who wishes to steal your funds.
+NEVER give someone you do not trust 100% your seed and never enter your seed in software you do not trust. Under the hood such software can send your seed to someone who wants to steal your funds.
 
 ## What does this tool do
 
