@@ -10,7 +10,7 @@ He then transfered iota to the address he generated and logged out of his wallet
 
 Because he accidentally made a typo when logging in, he lost access to his funds.
 
-This program checks the most common typing mistakes and tries to find the seeds the funds were actually transferred to.
+This program checks the most common typing mistakes and tries to find the real seed (typo-seed) of the address the funds were transferred to.
 
 * Generating seeds with one character missing
 * Generating seeds with character typed double
