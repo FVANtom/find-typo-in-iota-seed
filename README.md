@@ -4,7 +4,7 @@ NEVER give someone you do not trust 100% your seed and never enter your seed in 
 
 ## What does this tool do
 
-I have written this script to help a user on Reddit who accidentally made a typo in his seed while logging in into the wallet.
+I have written this tool to help a user on Reddit who accidentally made a typo in his seed while logging in into the wallet.
 
 He then transfered iota to the address he generated and logged out of his wallet.
 
