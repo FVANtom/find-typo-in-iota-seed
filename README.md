@@ -49,6 +49,8 @@ My iota address:
 
 ## Add new version to maven local repo
 
+Download the jar with depencencies from the official java library at https://github.com/iotaledger/iota.lib.java
+
     mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file \
       -Dfile=./jota-VERSION-HERE-jar-with-dependencies.jar \
       -DgroupId=iota.lib.java \
@@ -57,8 +59,7 @@ My iota address:
       -Dpackaging=jar \
       -DlocalRepositoryPath=lib
       
-Or you can switch to the latest iota java library
-https://github.com/iotaledger/iota.lib.java
+Or you can switch to the latest maven iota java library
 
 ## License
 
