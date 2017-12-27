@@ -175,7 +175,7 @@ public class FindTypoInIOTASeed {
 
         System.out.println("Generating all possible combinations");
         List<String> similarSeeds = new ArrayList<String>();
-        similarSeeds.add(originalSeed);
+        similarSeeds.add(this.originalSeed);
         addSeedsWithMissingRandomCharacter(similarSeeds);
         addSeedsWithRemovedCharacter1(similarSeeds);
         addSeedsWithDoubleCharacter1(similarSeeds);
