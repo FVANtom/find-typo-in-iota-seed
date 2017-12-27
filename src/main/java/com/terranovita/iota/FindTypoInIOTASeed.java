@@ -177,12 +177,12 @@ public class FindTypoInIOTASeed {
         List<String> similarSeeds = new ArrayList<String>();
         similarSeeds.add(this.originalSeed);
         addSeedsWithMissingRandomCharacter(similarSeeds);
-        /*addSeedsWithRemovedCharacter1(similarSeeds);
+        addSeedsWithRemovedCharacter1(similarSeeds);
         addSeedsWithDoubleCharacter1(similarSeeds);
         addSeedsWithReplacingChars(similarSeeds);
         addSeedsWithDoubleCharacter2(similarSeeds);
         addSeedsWithListOfDyslexiaSeeds(similarSeeds);
-        addSeedsWithSimilarSeeds1Char(similarSeeds);*/
+        addSeedsWithSimilarSeeds1Char(similarSeeds);
         //addSeedsWithListOfSimilarSeeds2Chars(similarSeeds);
 
 
