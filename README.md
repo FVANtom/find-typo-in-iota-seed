@@ -38,8 +38,12 @@ Anyone who transferred funds to an IOTA address of a seed similar to his own but
     
 ## No idea how to use this tool?
 
-If you are not able to run this tool yourself, or you need customization. I am willing to try and help you.
-You can email me at iota@terranovita.com (my name is Tom)
+If you are not able to run this tool yourself, or you need customization. I am willing to try and help you. 
+
+My name is Tom
+ - You can email me at iota@terranovita.com 
+ - Alternatively you can contact 'fvantom' on the IOTA Slack chat.
+ - Or message FVANtom333 on Reddit (https://www.reddit.com/user/FVANtom333/)
 
 ## Make a donation
 
