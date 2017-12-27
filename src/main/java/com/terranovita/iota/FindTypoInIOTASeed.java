@@ -113,7 +113,7 @@ public class FindTypoInIOTASeed {
         return similarSeeds;
     }
 
-    private List<String> addSeedsWithGetListOfDyslexiaSeeds(List<String> similarSeeds) {
+    private List<String> addSeedsWithListOfDyslexiaSeeds(List<String> similarSeeds) {
         System.out.println("Generating seeds with 2 neighbouring characters switched");
         for (int x = originalSeed.length() - 2; x > 1; x--) {
             String newSeed = originalSeed.substring(0, x - 2) + originalSeed.substring(x - 1, x) + originalSeed.substring(x - 2, x - 1) + originalSeed.substring(x);
@@ -124,12 +124,24 @@ public class FindTypoInIOTASeed {
         return similarSeeds;
     }
 
-    private List<String> addSeedsWithGetListOfSimilarSeeds(List<String> similarSeeds) {
-        System.out.println("Generating seeds with 1 character mistyped");
-        return innerAddSeedsWithGetListOfSimilarSeeds(similarSeeds, this.originalSeed);
+    private List<String> addSeedsWithMissingRandomCharacter(List<String> similarSeeds) {
+        for (int x = originalSeed.length() - 1; x > 0; x--) {
+            for (int y = 0; y < POSSIBLE_CHARS.length(); y++) {
+                String newSeed = originalSeed.substring(0, x) + POSSIBLE_CHARS.substring(y, y + 1) + originalSeed.substring(x, originalSeed.length() - 1);
+                if(!similarSeeds.contains(newSeed)) {
+                    similarSeeds.add(newSeed);
+                }
+            }
+        }
+        return similarSeeds;
     }
 
-    private List<String> innerAddSeedsWithGetListOfSimilarSeeds(List<String> similarSeeds, String theSeed) {
+    private List<String> addSeedsWithSimilarSeeds1Char(List<String> similarSeeds) {
+        System.out.println("Generating seeds with 1 character mistyped");
+        return innerAddSeedsWithListOfSimilarSeeds1Char(similarSeeds, this.originalSeed);
+    }
+
+    private List<String> innerAddSeedsWithListOfSimilarSeeds1Char(List<String> similarSeeds, String theSeed) {
         for (int x = theSeed.length() - 3; x > 0; x--) {
             for (int y = 0; y < POSSIBLE_CHARS.length(); y++) {
                 String newSeed = theSeed.substring(0, x) + POSSIBLE_CHARS.substring(y, y + 1) + theSeed.substring(x + 1);
@@ -141,18 +153,18 @@ public class FindTypoInIOTASeed {
         return similarSeeds;
     }
 
-    /*
+
     // This takes too long and is not recommended. Contact me at iota@terranovita.com if you need customized help. I'll see what I can do for you.
-    private List<String> getListOfSimilarSeeds2Chars(List<String> similarSeeds) {
+    private List<String> addSeedsWithListOfSimilarSeeds2Chars(List<String> similarSeeds) {
         System.out.println("Generating seeds with 2 characters mistyped (CAUTION: This will take a long time, not recommended)");
         for (int x = originalSeed.length() - 3; x > 0 ; x--) {
             for (int y = 0; y < POSSIBLE_CHARS.length(); y++) {
                 String tempSeed = originalSeed.substring(0, x) + POSSIBLE_CHARS.substring(y, y + 1) + originalSeed.substring(x+1);
-                innerAddSeedsWithGetListOfSimilarSeeds(similarSeeds, tempSeed);
+                innerAddSeedsWithListOfSimilarSeeds1Char(similarSeeds, tempSeed);
             }
         }
         return similarSeeds;
-    }*/
+    }
 
     public void findTypoSeed(String originalSeed, String addressToLookFor, int indexOffset) throws ArgumentException, InterruptedException, InvalidAddressException, InvalidSecurityLevelException {
 
@@ -163,12 +175,16 @@ public class FindTypoInIOTASeed {
 
         System.out.println("Generating all possible combinations");
         List<String> similarSeeds = new ArrayList<String>();
+        similarSeeds.add(originalSeed);
+        addSeedsWithMissingRandomCharacter(similarSeeds);
         addSeedsWithRemovedCharacter1(similarSeeds);
         addSeedsWithDoubleCharacter1(similarSeeds);
         addSeedsWithReplacingChars(similarSeeds);
         addSeedsWithDoubleCharacter2(similarSeeds);
-        addSeedsWithGetListOfDyslexiaSeeds(similarSeeds);
-        addSeedsWithGetListOfSimilarSeeds(similarSeeds);
+        addSeedsWithListOfDyslexiaSeeds(similarSeeds);
+        addSeedsWithSimilarSeeds1Char(similarSeeds);
+        //addSeedsWithListOfSimilarSeeds2Chars(similarSeeds);
+
 
         System.out.println("Starting search (Checking " + similarSeeds.size() + " seeds)");
         for (int x = indexOffset; x < similarSeeds.size(); x++) {
