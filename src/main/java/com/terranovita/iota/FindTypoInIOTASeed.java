@@ -74,11 +74,21 @@ public class FindTypoInIOTASeed {
         similarSeeds.add(sanitizeSeed(originalSeed.substring(0, originalSeed.length() - 3)));
         similarSeeds.add(sanitizeSeed(originalSeed.substring(0, originalSeed.length() - 4)));
         similarSeeds.add(sanitizeSeed(originalSeed.substring(1, originalSeed.length() - 1)));
-        similarSeeds.add(sanitizeSeed(originalSeed.substring(2, originalSeed.length() - 1)));
-        similarSeeds.add(sanitizeSeed(originalSeed.substring(3, originalSeed.length() - 1)));
         similarSeeds.add(sanitizeSeed(originalSeed.substring(1, originalSeed.length() - 2)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(1, originalSeed.length() - 3)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(1, originalSeed.length() - 4)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(2, originalSeed.length() - 1)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(2, originalSeed.length() - 2)));
         similarSeeds.add(sanitizeSeed(originalSeed.substring(2, originalSeed.length() - 3)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(2, originalSeed.length() - 4)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(3, originalSeed.length() - 1)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(3, originalSeed.length() - 2)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(3, originalSeed.length() - 3)));
         similarSeeds.add(sanitizeSeed(originalSeed.substring(3, originalSeed.length() - 4)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(4, originalSeed.length() - 1)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(4, originalSeed.length() - 2)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(4, originalSeed.length() - 3)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(4, originalSeed.length() - 4)));
         return similarSeeds;
     }
 
