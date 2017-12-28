@@ -67,6 +67,21 @@ public class FindTypoInIOTASeed {
     }
 
 
+    private List<String> addSeedsWithCopyPastError(List<String> similarSeeds) {
+        System.out.println("Generating seeds with missing letters in front/back");
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(0, originalSeed.length() - 1)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(0, originalSeed.length() - 2)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(0, originalSeed.length() - 3)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(0, originalSeed.length() - 4)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(1, originalSeed.length() - 1)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(2, originalSeed.length() - 1)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(3, originalSeed.length() - 1)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(1, originalSeed.length() - 2)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(2, originalSeed.length() - 3)));
+        similarSeeds.add(sanitizeSeed(originalSeed.substring(3, originalSeed.length() - 4)));
+        return similarSeeds;
+    }
+
     private List<String> addSeedsWithRemovedCharacter1(List<String> similarSeeds) {
         System.out.println("Generating seeds with one character missing");
         for (int x = originalSeed.length() - 2; x > 0; x--) {
@@ -176,6 +191,7 @@ public class FindTypoInIOTASeed {
         System.out.println("Generating all possible combinations");
         List<String> similarSeeds = new ArrayList<String>();
         similarSeeds.add(this.originalSeed);
+        addSeedsWithCopyPastError(similarSeeds);
         addSeedsWithRemovedCharacter1(similarSeeds);
         addSeedsWithDoubleCharacter1(similarSeeds);
         addSeedsWithReplacingChars(similarSeeds);
