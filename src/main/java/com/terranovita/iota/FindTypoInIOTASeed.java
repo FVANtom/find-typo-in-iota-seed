@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class FindTypoInIOTASeed {
 
@@ -96,7 +97,7 @@ public class FindTypoInIOTASeed {
         System.out.println("Generating seeds with one character missing");
         for (int x = originalSeed.length() - 2; x > 0; x--) {
             String newSeed = originalSeed.substring(0, x - 1) + originalSeed.substring(x, originalSeed.length()) + "9";
-            if(!similarSeeds.contains(newSeed)) {
+            if (!similarSeeds.contains(newSeed)) {
                 similarSeeds.add(newSeed);
             }
         }
@@ -107,7 +108,7 @@ public class FindTypoInIOTASeed {
         System.out.println("Generating seeds with character typed double");
         for (int x = originalSeed.length() - 2; x > 0; x--) {
             String newSeed = originalSeed.substring(0, x) + originalSeed.substring(x - 1, x) + originalSeed.substring(x, originalSeed.length() - 1);
-            if(!similarSeeds.contains(newSeed)) {
+            if (!similarSeeds.contains(newSeed)) {
                 similarSeeds.add(newSeed);
             }
         }
@@ -131,7 +132,7 @@ public class FindTypoInIOTASeed {
         System.out.println("Generating seeds with block of 2 characters retyped");
         for (int x = originalSeed.length() - 2; x > 1; x--) {
             String newSeed = originalSeed.substring(0, x) + originalSeed.substring(x - 2, x) + originalSeed.substring(x, originalSeed.length() - 2);
-            if(!similarSeeds.contains(newSeed)) {
+            if (!similarSeeds.contains(newSeed)) {
                 similarSeeds.add(newSeed);
             }
         }
@@ -142,7 +143,7 @@ public class FindTypoInIOTASeed {
         System.out.println("Generating seeds with 2 neighbouring characters switched");
         for (int x = originalSeed.length() - 2; x > 1; x--) {
             String newSeed = originalSeed.substring(0, x - 2) + originalSeed.substring(x - 1, x) + originalSeed.substring(x - 2, x - 1) + originalSeed.substring(x);
-            if(!similarSeeds.contains(newSeed)) {
+            if (!similarSeeds.contains(newSeed)) {
                 similarSeeds.add(newSeed);
             }
         }
@@ -153,7 +154,7 @@ public class FindTypoInIOTASeed {
         for (int x = originalSeed.length() - 1; x >= 0; x--) {
             for (int y = 0; y < POSSIBLE_CHARS.length(); y++) {
                 String newSeed = originalSeed.substring(0, x) + POSSIBLE_CHARS.substring(y, y + 1) + originalSeed.substring(x, originalSeed.length() - 1);
-                if(!similarSeeds.contains(newSeed)) {
+                if (!similarSeeds.contains(newSeed)) {
                     similarSeeds.add(newSeed);
                 }
             }
@@ -170,7 +171,7 @@ public class FindTypoInIOTASeed {
         for (int x = theSeed.length() - 3; x > 0; x--) {
             for (int y = 0; y < POSSIBLE_CHARS.length(); y++) {
                 String newSeed = theSeed.substring(0, x) + POSSIBLE_CHARS.substring(y, y + 1) + theSeed.substring(x + 1);
-                if(!similarSeeds.contains(newSeed)) {
+                if (!similarSeeds.contains(newSeed)) {
                     similarSeeds.add(newSeed);
                 }
             }
@@ -182,9 +183,9 @@ public class FindTypoInIOTASeed {
     // This takes too long and is not recommended. Contact me at iota@terranovita.com if you need customized help. I'll see what I can do for you.
     private List<String> addSeedsWithListOfSimilarSeeds2Chars(List<String> similarSeeds) {
         System.out.println("Generating seeds with 2 characters mistyped (CAUTION: This will take a long time, not recommended)");
-        for (int x = originalSeed.length() - 3; x > 0 ; x--) {
+        for (int x = originalSeed.length() - 3; x > 0; x--) {
             for (int y = 0; y < POSSIBLE_CHARS.length(); y++) {
-                String tempSeed = originalSeed.substring(0, x) + POSSIBLE_CHARS.substring(y, y + 1) + originalSeed.substring(x+1);
+                String tempSeed = originalSeed.substring(0, x) + POSSIBLE_CHARS.substring(y, y + 1) + originalSeed.substring(x + 1);
                 innerAddSeedsWithListOfSimilarSeeds1Char(similarSeeds, tempSeed);
             }
         }
@@ -216,7 +217,14 @@ public class FindTypoInIOTASeed {
         for (int x = indexOffset; x < similarSeeds.size(); x++) {
             System.out.println("checking seed with index " + x + " (" + similarSeeds.get(x) + ")");
             GetNewAddressResponse addressResponse = api.getNewAddress(similarSeeds.get(x), 2, 0, true, 30, true);
-            if (addressResponse.getAddresses().contains(addressToLookFor)) {
+            List<String> addresses = new ArrayList<String>();
+            addresses.addAll(addressResponse.getAddresses().stream()
+                    .map(address -> {
+                        addresses.add(address.substring(0, 81));
+                        return address;
+                    })
+                    .collect(Collectors.toList()));
+            if (addresses.contains(addressToLookFor)) {
                 System.out.println("");
                 System.out.println("*****************************************************************************************************************");
                 System.out.println("*                                                                                                               *");
