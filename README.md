@@ -30,11 +30,23 @@ Anyone who transferred funds to an IOTA address of a seed similar to his own but
 * Your original seed
 * The address your funds were transfered (belonging to the 'typo-seed')
 
-## How to run:
+## How to build and run:
 
     mvn clean install
 
     java -jar target/find-typo-in-iota-seed-jar-with-dependencies.jar 
+    
+## How to run the precompiled binary
+
+Download the latest release at 
+https://github.com/FVANtom/find-typo-in-iota-seed/releases
+
+You will need to have at least java 8 installed:
+https://java.com/en/download/
+
+Download the jar and run it with the following command:
+
+    java -jar find-typo-in-iota-seed-jar-with-dependencies.jar
     
 ## No idea how to use this tool?
 
